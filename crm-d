@@ -1,0 +1,27 @@
+.scroll-container {
+  height: 500px;               /* Adjust height of visible area */
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-container .card {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes autoscroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+.scroll-container:hover {
+  animation-play-state: paused;  /* Pause on hover */
+}
+
+.scroll-container {
+  animation: autoscroll 40s linear infinite;
+}
