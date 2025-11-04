@@ -1,27 +1,38 @@
 .scroll-container {
-  height: 500px;               /* Adjust height of visible area */
+  height: 500px;              /* visible height of scrolling area */
   overflow: hidden;
   position: relative;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 
-.scroll-container .card {
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 10px;
+.scroll-content {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-up 45s linear infinite;
+}
+
+.scroll-container:hover .scroll-content {
+  animation-play-state: paused; /* pause on hover */
+}
+
+.card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
-@keyframes autoscroll {
+.card code {
+  background: rgba(0, 0, 0, 0.4);
+  color: #00d084;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@keyframes scroll-up {
   0%   { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
-}
-
-.scroll-container:hover {
-  animation-play-state: paused;  /* Pause on hover */
-}
-
-.scroll-container {
-  animation: autoscroll 40s linear infinite;
+  100% { transform: translateY(-50%); } /* -50% because we duplicated content */
 }
